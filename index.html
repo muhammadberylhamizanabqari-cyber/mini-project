@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productivity Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Top Bar ── -->
+  <header class="top-bar">
+    <div class="greeting-block">
+      <p id="greeting-text" class="greeting"></p>
+      <p id="datetime-text" class="datetime"></p>
+    </div>
+    <div class="top-controls">
+      <button id="theme-toggle" class="icon-btn" title="Toggle theme">🌙</button>
+      <button id="edit-name-btn" class="icon-btn" title="Set your name">✏️</button>
+    </div>
+  </header>
+
+  <!-- ── Name Modal ── -->
+  <div id="name-modal" class="modal hidden">
+    <div class="modal-box">
+      <h2>Your name</h2>
+      <input id="name-input" type="text" placeholder="Enter your name" maxlength="40" />
+      <div class="modal-actions">
+        <button id="name-save-btn" class="btn primary">Save</button>
+        <button id="name-cancel-btn" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main Grid ── -->
+  <main class="grid">
+
+    <!-- Focus Timer -->
+    <section class="card" id="timer-card">
+      <h2 class="card-title">Focus Timer</h2>
+      <div id="timer-display" class="timer-display">25:00</div>
+      <div class="timer-buttons">
+        <button id="timer-start" class="btn primary">Start</button>
+        <button id="timer-stop"  class="btn">Stop</button>
+        <button id="timer-reset" class="btn">Reset</button>
+      </div>
+    </section>
+
+    <!-- To-Do List -->
+    <section class="card" id="todo-card">
+      <h2 class="card-title">To-Do</h2>
+      <form id="todo-form" class="input-row">
+        <input id="todo-input" type="text" placeholder="Add a task…" maxlength="120" />
+        <button type="submit" class="btn primary">Add</button>
+      </form>
+      <p id="todo-error" class="error-msg hidden">Task already exists.</p>
+      <ul id="todo-list" class="todo-list"></ul>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="card" id="links-card">
+      <h2 class="card-title">Quick Links</h2>
+      <form id="link-form" class="input-row stack">
+        <input id="link-label" type="text"  placeholder="Label"      maxlength="30"  />
+        <input id="link-url"   type="url"   placeholder="https://…"  maxlength="300" />
+        <button type="submit" class="btn primary">Add</button>
+      </form>
+      <div id="link-list" class="link-list"></div>
+    </section>
+
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

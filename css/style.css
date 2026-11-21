@@ -1,0 +1,311 @@
+/* ── CSS Custom Properties ─────────────────────────────── */
+:root {
+  /* Light theme */
+  --bg:          #f5f5f0;
+  --surface:     #ffffff;
+  --border:      #e0ddd6;
+  --text:        #1a1a1a;
+  --text-muted:  #6b6b6b;
+  --accent:      #4f6ef7;
+  --accent-h:    #3a58d4;
+  --danger:      #e05252;
+  --done-color:  #9ca3af;
+  --radius:      12px;
+  --shadow:      0 2px 12px rgba(0,0,0,.07);
+  --font:        'Segoe UI', system-ui, sans-serif;
+  --transition:  .2s ease;
+}
+
+[data-theme="dark"] {
+  --bg:         #121212;
+  --surface:    #1e1e1e;
+  --border:     #2e2e2e;
+  --text:       #e8e8e8;
+  --text-muted: #888888;
+  --accent:     #6b8aff;
+  --accent-h:   #849eff;
+  --danger:     #ff6b6b;
+  --shadow:     0 2px 12px rgba(0,0,0,.4);
+}
+
+/* ── Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ── Top Bar ───────────────────────────────────────────── */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.greeting { font-size: 1.3rem; font-weight: 600; }
+.datetime { font-size: .88rem; color: var(--text-muted); margin-top: .15rem; }
+
+.top-controls { display: flex; gap: .5rem; }
+
+.icon-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+.icon-btn:hover { background: var(--border); }
+
+/* ── Main Grid ─────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn {
+  padding: .5rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--border); }
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn.primary:hover { background: var(--accent-h); border-color: var(--accent-h); }
+
+/* ── Input Row ─────────────────────────────────────────── */
+.input-row {
+  display: flex;
+  gap: .5rem;
+}
+.input-row.stack { flex-wrap: wrap; }
+
+input[type="text"],
+input[type="url"] {
+  flex: 1;
+  min-width: 0;
+  padding: .5rem .75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+input[type="text"]:focus,
+input[type="url"]:focus { border-color: var(--accent); }
+
+/* ── Error Message ─────────────────────────────────────── */
+.error-msg { color: var(--danger); font-size: .82rem; }
+.hidden { display: none !important; }
+
+/* ── Focus Timer ───────────────────────────────────────── */
+.timer-display {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.timer-buttons {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── To-Do List ────────────────────────────────────────── */
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: .25rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .5rem .6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  transition: opacity var(--transition);
+}
+
+.todo-item input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Task text — normal and edit modes */
+.todo-text {
+  flex: 1;
+  font-size: .9rem;
+  word-break: break-word;
+  cursor: text;
+}
+.todo-text.done {
+  text-decoration: line-through;
+  color: var(--done-color);
+}
+
+.todo-edit-input {
+  flex: 1;
+  padding: .2rem .4rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: .9rem;
+  outline: none;
+}
+
+.todo-actions { display: flex; gap: .3rem; flex-shrink: 0; }
+
+.small-btn {
+  padding: .25rem .55rem;
+  font-size: .78rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.small-btn:hover { background: var(--border); color: var(--text); }
+.small-btn.danger:hover { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+/* ── Quick Links ───────────────────────────────────────── */
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .4rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: .88rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text);
+  transition: background var(--transition), border-color var(--transition);
+}
+.link-chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.link-chip .remove-link {
+  font-size: .75rem;
+  opacity: .6;
+  cursor: pointer;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+}
+.link-chip:hover .remove-link { opacity: 1; }
+
+/* ── Modal ─────────────────────────────────────────────── */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: min(360px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.modal-box h2 { font-size: 1.1rem; }
+
+.modal-actions { display: flex; gap: .5rem; justify-content: flex-end; }
+
+/* ── Scrollbar (subtle) ────────────────────────────────── */
+.todo-list::-webkit-scrollbar { width: 4px; }
+.todo-list::-webkit-scrollbar-track { background: transparent; }
+.todo-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .top-bar { padding: 1rem; }
+  .grid    { padding: 1rem; gap: 1rem; }
+  .timer-display { font-size: 2.8rem; }
+}
